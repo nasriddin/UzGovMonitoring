@@ -1,18 +1,17 @@
 package uz.safar.open_data.service;
 
 
+import io.jsonwebtoken.lang.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.safar.open_data.model.*;
 import uz.safar.open_data.payload.ApiResponse;
+import uz.safar.open_data.payload.RateChar;
 import uz.safar.open_data.payload.RateIn;
 import uz.safar.open_data.repository.*;
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class EmployeeService {
@@ -37,11 +36,17 @@ public class EmployeeService {
         return regionRepository.findAll();
     }
 
+    public List<Organization> getOrganization(){
+        return organizationRepository.findAll();
+    }
+
     public List<Organization> getAllOrganization(Integer region_id) {
 
         return organizationRepository.findOrganizationsByRegionId(region_id);
 
     }
+
+
 
     public List<Department> getAllDepartment(Integer organization_id) {
         return departmentRepository.findDepartmentsByOrganizationId(organization_id);
@@ -71,6 +76,16 @@ public class EmployeeService {
 
         rateRepository.save(new Rate(rateIn.getComment(), rateIn.getStatus(), new Timestamp(calendar.getTimeInMillis()), employee, currentUser));
         return new ApiResponse("Rated ",true,0);
+    }
+
+    public List<Long>  getRate(){
+
+//        Optional<Rate> optionalRate = rateRepository.findRatesByStatusGreaterThan(2);
+//        if (optionalRate.isPresent()){
+//            Rate rate = optionalRate.get();
+//
+//        }
+        return rateRepository.find();
     }
 
 }

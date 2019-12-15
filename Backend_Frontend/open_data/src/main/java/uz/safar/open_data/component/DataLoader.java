@@ -37,7 +37,7 @@ public class DataLoader implements CommandLineRunner {
             userRepository.save(new User(
                     "admin",
                     passwordEncoder.encode("admin1"),
-                    "123456",
+                    "+998999999999",
                     roleRepository.findAllByName(RoleName.ROLE_ADMIN)));
 
             userRepository.save(new User(
