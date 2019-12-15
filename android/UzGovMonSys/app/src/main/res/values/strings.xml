@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">UzGovMonSys</string>
+    <string name="enter_phone_numb">Enter Phone Number</string>
+    <string name="phone_numb"> Phone Number</string>
+    <string name="enter_the_sms_code">SMS code</string>
+    <string name="btn_text">Continue</string>
+    <string name="sms_codeTxt">%s raqamiga jo’natilgan \nsms kodni kiriting.</string>
+    <string name="registration"><u>Registration</u></string>
+    <string name="passwordHint">Enter password(min 6 characters)</string>
+    <string name="login">Login</string>
+</resources>
