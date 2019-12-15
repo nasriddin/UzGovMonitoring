@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+    <form id="authForm">
+        <div class="reg-title">Log In</div>
+        <input type="text" id="username" class="input" placeholder="Username">
+        <input type="password" id="password" class="input" placeholder="Password">
+        <div class="reg-btn-container">
+            <button type="submit" id="click" class="btn-register">Submit</button>
+        </div>
+
+    </form>
+</div>
+<script src="/jquery.min.js"></script>
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $('#authForm').on('submit', function (event) {-->
+<!--            event.preventDefault();-->
+<!--            $.ajax({-->
+<!--                url: 'http://localhost:7878/api/auth/login',-->
+<!--                data: $('#authForm').serialize(),-->
+<!--                method: 'post',-->
+<!--                dataType: 'json',-->
+<!--                success: function (res) {-->
+<!--                    if (res.success) {-->
+<!--                        document.location = '/register';-->
+<!--                    } else-->
+<!--                        alert(res.msg);-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+</body>
+    <script>
+        $('#click').click(function (e) {
+            e.preventDefault();
+            let data = {
+                phoneNumber: '',
+                password: ''
+            };
+            let username = $('#username').val();
+            let pass = $('#password').val();
+
+            data.phoneNumber = username;
+            data.password = pass;
+
+            // console.log(data);
+            $.ajax({
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                type: "POST",
+                dataType: 'JSON',
+                url: 'http://localhost:7878/api/auth/login',
+                data: JSON.stringify(data),
+                success: function(response) {
+                    // console.log(response);
+                    // localStorage.setItem('access-tokens', JSON.stringify(response));
+                    // console.log(localStorage.getItem('access-tokens'));
+                    if (response.ok){
+                        console.log(response);
+                        localStorage.setItem('access-tokens', JSON.stringify(response));
+                        console.log(localStorage.getItem('access-tokens'));
+                    } else {
+                        alert(response.message)
+                    }
+
+                }
+            })
+        })
+    </script>
+
+</html>
