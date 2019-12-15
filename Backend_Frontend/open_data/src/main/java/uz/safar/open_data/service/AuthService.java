@@ -42,7 +42,7 @@ public class AuthService implements UserDetailsService {
         Optional<User> optionalUser = userRepository.findByPhoneNumber(reqSignUp.getPhoneNumber());
 
         if (optionalUser.isPresent()) {
-            return new ApiResponse("Bunday telefon nomer oldin registratsiya qilingan",false);
+            return new ApiResponse("Bunday telefon nomer oldin registratsiya qilingan",false,1);
         }else {
             userRepository.save(
                     new User(
@@ -50,7 +50,7 @@ public class AuthService implements UserDetailsService {
                             passwordEncoder.encode(reqSignUp.getPassword()),
                             reqSignUp.getPhoneNumber(),
                             roleRepository.findAllByName(RoleName.ROLE_USER)));
-            return new ApiResponse("Muvvafiqiyatli o'tildi",true);
+            return new ApiResponse("Muvvafiqiyatli o'tildi",true,0);
         }
     }
 }

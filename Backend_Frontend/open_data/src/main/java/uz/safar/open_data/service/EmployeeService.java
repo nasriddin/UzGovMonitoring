@@ -65,12 +65,12 @@ public class EmployeeService {
         if (optionalRate.isPresent()) {
             Rate lastRate = optionalRate.get();
             if (lastRate.getCreatedAt().after(date)) {
-                return new ApiResponse("1 kun ichida bitta ishchiga bir hil foydalanuvchidan otziv", false);
+                return new ApiResponse("1 kun ichida bitta ishchiga bir hil foydalanuvchidan otziv", false,1);
             }
         }
 
         rateRepository.save(new Rate(rateIn.getComment(), rateIn.getStatus(), new Timestamp(calendar.getTimeInMillis()), employee, currentUser));
-        return new ApiResponse("Rated ",true);
+        return new ApiResponse("Rated ",true,0);
     }
 
 }
