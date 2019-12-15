@@ -20,9 +20,11 @@ import uz.com.uzgovmonsys.madel.Organizaions;
 public class OrganizationsAdapter extends RecyclerView.Adapter<OrganizationsAdapter.ViewHolder> {
 
     List<Organizaions> list;
+    OnItemClickListenerOrganization listener;
 
-    public OrganizationsAdapter(List<Organizaions> list) {
+    public OrganizationsAdapter(List<Organizaions> list, OnItemClickListenerOrganization listener) {
         this.list = list;
+        this.listener = listener;
     }
 
     @NonNull
@@ -67,8 +69,16 @@ public class OrganizationsAdapter extends RecyclerView.Adapter<OrganizationsAdap
             compName.setText(organizaions.getName());
             this.regionTitle.setText(organizaions.getRegion().getName());
             Log.e("name", organizaions.getName());
+
+            organizationItem.setOnClickListener(v -> {
+                listener.onItemClick();
+            });
         }
 
 
+    }
+
+    public interface OnItemClickListenerOrganization {
+        public void onItemClick();
     }
 }

@@ -96,4 +96,10 @@ public class MainActivity extends MvpAppCompatActivity implements MainCallback, 
     public void organizationsById(String id) {
         presenter.getOrganizationsByID(id);
     }
+
+    @Override
+    public void commetFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_container, new CommentFragment()).addToBackStack(CommentFragment.TAG).commit();
+
+    }
 }

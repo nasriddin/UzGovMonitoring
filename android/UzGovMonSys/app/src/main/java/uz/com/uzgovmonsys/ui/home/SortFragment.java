@@ -48,6 +48,10 @@ public class SortFragment extends BaseFragment {
 
     List<Organizaions> organizaions;
     OrganizationsAdapter adapter;
+
+    OrganizationsAdapter.OnItemClickListenerOrganization onItemClickListener= () -> {
+mainActvityListener.commetFragment();
+    };
     private static List<RegionsResponse> regionsResponse;
     private Unbinder unbinder;
     RegionsDialog dialog;
@@ -62,7 +66,6 @@ public class SortFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
     }
 
@@ -79,10 +82,11 @@ public class SortFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
         organizaions = new ArrayList<>();
-        adapter = new OrganizationsAdapter(organizaions);
+        adapter = new OrganizationsAdapter(organizaions,onItemClickListener);
         compList.setAdapter(adapter);
         compList.setLayoutManager(new LinearLayoutManager(context));
         mainActvityListener.organizations();
+
 
     }
 

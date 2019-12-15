@@ -65,7 +65,7 @@ public class AuthActivity extends MvpAppCompatActivity implements AuthCallback, 
     @Override
     public void onBackPressed() {
 
-
+        hideLoading();
         int count = getSupportFragmentManager().getBackStackEntryCount();
 
         if (count == 0) {
